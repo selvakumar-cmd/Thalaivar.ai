@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Analytics — THALAIVAR.AI</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    .analytics-header {
+      text-align: center;
+      padding: 4rem 2rem 2rem;
+    }
+    
+    .charts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+      gap: 2rem;
+      padding: 2rem;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+    
+    .chart-card {
+      background: var(--bg-card);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius);
+      padding: 2rem;
+    }
+    
+    .chart-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    
+    canvas {
+      width: 100% !important;
+      max-height: 400px;
+    }
+    
+    @media (max-width: 768px) {
+      .charts-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="particles-canvas"></canvas>
+
+  <nav class="navbar">
+    <a href="index.html" class="nav-logo">
+      <div class="logo-icon">⭐</div>
+      <span class="logo-text">THALAIVAR.AI</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">🏠 Home</a></li>
+      <li><a href="movies.html">🎬 Movies</a></li>
+      <li><a href="dialogue.html">💬 Dialogues</a></li>
+      <li><a href="analytics.html" class="active">📊 Analytics</a></li>
+      <li><a href="fan-arena.html" class="nav-cta">🏆 Fan Arena</a></li>
+    </ul>
+    <div class="hamburger" onclick="toggleNav()">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <main class="main-content">
+    <div class="analytics-header">
+      <div class="badge badge-gold mb-2">Box Office</div>
+      <h1 class="section-title">The Superstar <span>Economy</span></h1>
+      <p class="section-subtitle">Visualizing 50 years of unmatched box office dominance</p>
+    </div>
+    
+    <div class="analytics-controls" id="analyticsFilters">
+      <button class="control-btn active" data-decade="all">All Time</button>
+      <button class="control-btn" data-decade="1990s">1990s</button>
+      <button class="control-btn" data-decade="2000s">2000s</button>
+      <button class="control-btn" data-decade="2010s">2010s</button>
+      <button class="control-btn" data-decade="2020s">2020s</button>
+    </div>
+    
+    <div class="charts-grid">
+      <div class="chart-card animate-fade-in" style="animation-delay: 0.1s;">
+        <h3 class="chart-title">Decade vs Box Office Revenue (Crores)</h3>
+        <canvas id="decadeChart"></canvas>
+      </div>
+      
+      <div class="chart-card animate-fade-in" style="animation-delay: 0.2s;">
+        <h3 class="chart-title">Highest Grossing Movies</h3>
+        <canvas id="topMoviesChart"></canvas>
+      </div>
+      
+      <div class="chart-card animate-fade-in" style="animation-delay: 0.3s; grid-column: 1/-1;">
+        <h3 class="chart-title">IMDb Rating vs Box Office</h3>
+        <canvas id="scatterChart"></canvas>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer mt-3">
+    <div class="footer-brand">⭐ THALAIVAR.AI</div>
+    <p class="footer-copy">© 2026 THALAIVAR.AI</p>
+  </footer>
+
+  <script src="js/particles.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/analytics.js"></script>
+</body>
+</html>

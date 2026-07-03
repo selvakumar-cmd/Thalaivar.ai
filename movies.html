@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Filmography — THALAIVAR.AI</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .movies-header {
+      padding: 6rem 2rem 1rem;
+      max-width: 1300px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .movies-grid-full {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 2rem;
+      padding: 2rem;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+    .filters-container {
+      background: #000;
+      border: 1px solid var(--glass-border);
+      border-radius: 4px;
+      padding: 2rem;
+      margin: 2rem auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+      box-shadow: inset 0 0 20px rgba(255,184,0,0.05);
+      max-width: 1000px;
+    }
+    .era-timeline {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 100%;
+      border-bottom: 1px solid #222;
+      padding-bottom: 1.5rem;
+      position: relative;
+    }
+    /* Timeline line */
+    .era-timeline::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 10%;
+      width: 80%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
+    }
+  </style>
+</head>
+<body>
+  <canvas id="particles-canvas"></canvas>
+
+  <nav class="navbar">
+    <a href="index.html" class="nav-logo">
+      <div class="logo-icon">⭐</div>
+      <span class="logo-text">THALAIVAR<span>.AI</span></span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">HOME</a></li>
+      <li><a href="movies.html" class="active">FILMOGRAPHY</a></li>
+      <li><a href="dialogue.html">PUNCH DIALOGUES</a></li>
+      <li><a href="analytics.html">BOX OFFICE</a></li>
+      <li><a href="fan-arena.html" class="nav-cta">FAN ARENA</a></li>
+    </ul>
+  </nav>
+
+  <main class="main-content">
+    <div class="movies-header">
+      <div class="badge badge-gold mb-2">Complete Database</div>
+      <h1 class="section-title">The <span>Thalaivar</span> Archives</h1>
+      <p class="section-subtitle">A historical journey from 1975 to 2026.</p>
+      
+      <div class="filters-container">
+        <!-- ERA FILTERS -->
+        <div class="era-timeline" id="genreFilters">
+          <button class="pill active" data-era="all">All Time</button>
+          <button class="pill" data-era="1970s">1970s</button>
+          <button class="pill" data-era="1980s">1980s</button>
+          <button class="pill" data-era="1990s">1990s</button>
+          <button class="pill" data-era="2000s">2000s</button>
+          <button class="pill" data-era="2010s">2010s</button>
+          <button class="pill" data-era="2020s">2020s</button>
+        </div>
+        
+        <div class="search-bar" style="width: 100%; max-width: 600px; display:flex;">
+          <span style="font-size:1.2rem; margin-right:10px;">🔍</span>
+          <input type="text" id="searchInput" placeholder="Search by title, year, or genre..." style="background:transparent; border:none; color:#FFF; width:100%; outline:none; font-family:'Outfit'; font-size:1.1rem;" />
+        </div>
+      </div>
+    </div>
+
+    <div class="movies-grid-full animate-fade-in" id="moviesGrid">
+      <!-- Loading placeholders -->
+      <div class="movie-card" style="height: 330px; background:#111; border-color:#222;"></div>
+      <div class="movie-card" style="height: 330px; background:#111; border-color:#222;"></div>
+      <div class="movie-card" style="height: 330px; background:#111; border-color:#222;"></div>
+      <div class="movie-card" style="height: 330px; background:#111; border-color:#222;"></div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-brand">THALAIVAR.AI</div>
+    <p style="color: var(--text-muted); font-size:0.9rem; font-weight: 600; text-transform: uppercase;">The Legendary Collection</p>
+  </footer>
+
+  <script src="js/particles.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/movies.js"></script>
+</body>
+</html>
