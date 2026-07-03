@@ -325,10 +325,11 @@ body {
 }
 
 @media (max-width: 768px) {
-  .navbar { height: auto; flex-direction: column; padding: 1rem; gap: 1rem; }
+  .navbar { height: auto; flex-direction: column; padding: 1rem 0.5rem; gap: 0.8rem; }
+  .nav-logo { justify-content: center; width: 100%; }
   .nav-links { display: flex; flex-wrap: wrap; justify-content: center; width: 100%; gap: 0.5rem; margin-left: 0; }
-  .nav-links a { font-size: 0.8rem; padding: 0.4rem 0.6rem; letter-spacing: 0; }
-  .main-content { padding-top: 130px; }
+  .nav-links a { font-size: 0.75rem; padding: 0.4rem 0.6rem; letter-spacing: 0; }
+  .main-content { padding-top: 160px; }
   .super-star-intro { font-size: 3rem; }
   .rajini-text { font-size: 1.5rem; }
 }
