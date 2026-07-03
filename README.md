@@ -8,6 +8,8 @@ A full-stack, MNC-level fan platform dedicated to the one and only **Superstar R
 
 ## 🌟 Live Features
 
+**🌐 Live Demo:** [https://selvakumar-cmd.github.io/Thalaivar.ai/](https://selvakumar-cmd.github.io/Thalaivar.ai/)
+
 | Page | Description |
 |------|-------------|
 | 🏠 **Home** | SUPER STAR intro animation, Rajini hero photo, stats |
