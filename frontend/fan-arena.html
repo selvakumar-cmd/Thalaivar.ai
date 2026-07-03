@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fan Arena — THALAIVAR.AI</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .arena-header { text-align: center; padding: 6rem 2rem 2rem; }
+    
+    .arena-container { max-width: 800px; margin: 0 auto; padding: 2rem; }
+    
+    .quiz-card {
+      background: #0A0A0E;
+      border: 2px solid var(--gold-dark);
+      border-radius: 4px;
+      padding: 4rem;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.9), inset 0 0 30px rgba(255,184,0,0.05);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .quiz-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+      background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
+    }
+    
+    .quiz-question { font-size: 1.8rem; font-weight: 800; color: #FFF; margin-bottom: 3rem; text-transform: uppercase; line-height: 1.4; }
+    
+    .quiz-options { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+    
+    .quiz-option {
+      background: #050508; border: 2px solid #333; padding: 1.2rem; border-radius: 4px;
+      cursor: pointer; transition: var(--transition); font-size: 1.1rem; font-weight: 700; color: var(--text-secondary);
+      text-transform: uppercase; letter-spacing: 1px;
+    }
+    
+    .quiz-option:hover { border-color: var(--gold-primary); background: rgba(255,184,0,0.1); color: var(--gold-primary); transform: translateX(10px); }
+    
+    .quiz-option.correct { background: rgba(0, 200, 100, 0.1); border-color: #00C864; color: #00C864; }
+    .quiz-option.wrong { background: rgba(229, 9, 20, 0.1); border-color: var(--red-accent); color: var(--red-accent); }
+    
+    .score-display { font-family: 'Cinzel', serif; font-size: 4rem; color: var(--gold-primary); margin-top: 2rem; font-weight: 900; }
+    
+    #nextBtn { margin-top: 3rem; display: none; }
+  </style>
+</head>
+<body>
+  <canvas id="particles-canvas"></canvas>
+
+  <nav class="navbar">
+    <a href="index.html" class="nav-logo">
+      <div class="logo-icon">⭐</div>
+      <span class="logo-text">THALAIVAR<span>.AI</span></span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">HOME</a></li>
+      <li><a href="movies.html">FILMOGRAPHY</a></li>
+      <li><a href="dialogue.html">PUNCH DIALOGUES</a></li>
+      <li><a href="analytics.html">BOX OFFICE</a></li>
+      <li><a href="fan-arena.html" class="nav-cta active">FAN ARENA</a></li>
+    </ul>
+  </nav>
+
+  <main class="main-content">
+    <div class="arena-header">
+      <div class="badge badge-red mb-2">LIVE ARENA</div>
+      <h1 class="section-title">TEST YOUR <span>LOYALTY</span></h1>
+      <p class="section-subtitle">Are you a true Thalaivar fan? Prove it.</p>
+    </div>
+    
+    <div class="arena-container">
+      <div class="quiz-card animate-fade-in" id="quizContainer">
+        <!-- Quiz content loaded here via JS -->
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer mt-3">
+    <div class="footer-brand">THALAIVAR.AI</div>
+  </footer>
+
+  <script src="js/particles.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/fan-arena.js"></script>
+</body>
+</html>
