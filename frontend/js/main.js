@@ -10,8 +10,12 @@ function toggleNav() {
 
 // ── Toast Notification ──
 function showToast(message, icon = '⭐') {
-  const container = document.getElementById('toastContainer');
-  if (!container) return;
+  let container = document.getElementById('toastContainer');
+  if (!container) {
+    container = document.createElement('div');
+    container.id = 'toastContainer';
+    document.body.appendChild(container);
+  }
   const toast = document.createElement('div');
   toast.className = 'toast';
   toast.innerHTML = `<span>${icon}</span><span>${message}</span>`;
