@@ -111,6 +111,32 @@
     <p style="color: var(--text-muted); font-size:0.9rem; font-weight: 600; text-transform: uppercase;">The Legendary Collection</p>
   </footer>
 
+  <!-- Movie Details Modal -->
+  <div id="movieModal" class="modal-overlay">
+    <div class="modal-content animate-fade-in">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <div class="modal-header" id="modalHeader">
+        <div class="modal-emoji" id="modalEmoji">🎬</div>
+        <div>
+          <h2 id="modalTitle">Movie Title</h2>
+          <div class="badge badge-gold" id="modalRating">⭐ 8.5</div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div class="movie-meta-grid" style="margin-bottom: 2rem;">
+          <div class="meta-item"><span class="meta-icon">🎬</span><span id="modalDirector">Director</span></div>
+          <div class="meta-item"><span class="meta-icon">⏳</span><span id="modalRuntime">Runtime</span></div>
+          <div class="meta-item"><span class="meta-icon">📅</span><span id="modalYear">Year</span></div>
+          <div class="meta-item"><span class="meta-icon">🎭</span><span id="modalGenre">Genre</span></div>
+        </div>
+        <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 2rem;">
+          "This is a placeholder description for the movie. A legendary performance by Superstar Rajinikanth that broke box office records and defined an era of Tamil cinema."
+        </p>
+        <button class="btn btn-primary" style="width: 100%;" onclick="showToast('Trailer coming soon!', '🎥')">▶ PLAY TRAILER</button>
+      </div>
+    </div>
+  </div>
+
   <script src="js/particles.js"></script>
   <script src="js/main.js"></script>
   <script src="js/movies.js"></script>
