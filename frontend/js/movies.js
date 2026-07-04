@@ -101,7 +101,7 @@ function renderMovies(movies) {
           </div>
         </div>
         
-        <button class="btn-details" onclick="showToast('Loading details for ${m.title}...', '🎬')">View Details</button>
+        <button class="btn-details" onclick="openModal(${m.id})">View Details</button>
       </div>
     </div>
   `).join('');
@@ -122,6 +122,37 @@ function filterMovies() {
   
   renderMovies(filtered);
 }
+
+// ── Modal Logic ──
+function openModal(id) {
+  const movie = allMovies.find(m => m.id === id);
+  if (!movie) return;
+  
+  document.getElementById('modalEmoji').textContent = movie.emoji;
+  document.getElementById('modalEmoji').style.background = `linear-gradient(180deg, ${movie.color}, #000)`;
+  document.getElementById('modalTitle').textContent = movie.title;
+  document.getElementById('modalRating').textContent = `⭐ ${movie.rating}`;
+  document.getElementById('modalDirector').textContent = movie.director;
+  document.getElementById('modalRuntime').textContent = movie.runtime;
+  document.getElementById('modalYear').textContent = movie.year;
+  document.getElementById('modalGenre').textContent = movie.genre;
+  
+  const modal = document.getElementById('movieModal');
+  if (modal) modal.classList.add('active');
+}
+
+function closeModal() {
+  const modal = document.getElementById('movieModal');
+  if (modal) modal.classList.remove('active');
+}
+
+// Close on clicking outside
+document.addEventListener('click', (e) => {
+  const modal = document.getElementById('movieModal');
+  if (e.target === modal) {
+    closeModal();
+  }
+});
 
 document.addEventListener('DOMContentLoaded', () => {
   loadMovies();
