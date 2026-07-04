@@ -82,20 +82,53 @@
     </div>
     
     <div class="charts-grid">
+
+      <!-- Row 1: Box Office over decades + Top Grossing -->
       <div class="chart-card animate-fade-in" style="animation-delay: 0.1s;">
-        <h3 class="chart-title">Decade vs Box Office Revenue (Crores)</h3>
+        <h3 class="chart-title">📈 Box Office Revenue by Decade (₹ Crores)</h3>
         <canvas id="decadeChart"></canvas>
       </div>
-      
+
       <div class="chart-card animate-fade-in" style="animation-delay: 0.2s;">
-        <h3 class="chart-title">Highest Grossing Movies</h3>
+        <h3 class="chart-title">🏆 Top Grossing Films</h3>
         <canvas id="topMoviesChart"></canvas>
       </div>
-      
-      <div class="chart-card animate-fade-in" style="animation-delay: 0.3s; grid-column: 1/-1;">
-        <h3 class="chart-title">IMDb Rating vs Box Office</h3>
+
+      <!-- Row 2: Genre Distribution + Director Collaboration -->
+      <div class="chart-card animate-fade-in" style="animation-delay: 0.3s;">
+        <h3 class="chart-title">🎭 Genre Distribution</h3>
+        <canvas id="genreChart"></canvas>
+      </div>
+
+      <div class="chart-card animate-fade-in" style="animation-delay: 0.4s;">
+        <h3 class="chart-title">🎬 Top Director Collaborations</h3>
+        <canvas id="directorChart"></canvas>
+      </div>
+
+      <!-- Row 3: IMDb Trend over career -->
+      <div class="chart-card animate-fade-in" style="animation-delay: 0.5s; grid-column: 1/-1;">
+        <h3 class="chart-title">⭐ IMDb Rating Trend Across Career</h3>
+        <canvas id="imdbTrendChart"></canvas>
+      </div>
+
+      <!-- Row 4: IMDb Rating vs Box Office Scatter -->
+      <div class="chart-card animate-fade-in" style="animation-delay: 0.6s; grid-column: 1/-1;">
+        <h3 class="chart-title">📊 IMDb Rating vs Box Office</h3>
         <canvas id="scatterChart"></canvas>
       </div>
+
+      <!-- Row 5: Career Timeline milestones -->
+      <div class="chart-card animate-fade-in" style="animation-delay: 0.7s;">
+        <h3 class="chart-title">🗓️ Career Timeline — Films per Decade</h3>
+        <canvas id="timelineChart"></canvas>
+      </div>
+
+      <!-- Row 6: Awards & Records -->
+      <div class="chart-card animate-fade-in" style="animation-delay: 0.8s;">
+        <h3 class="chart-title">🥇 Awards & Milestones</h3>
+        <canvas id="awardsChart"></canvas>
+      </div>
+
     </div>
   </main>
 

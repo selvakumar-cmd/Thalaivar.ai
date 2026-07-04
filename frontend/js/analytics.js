@@ -5,6 +5,18 @@
 Chart.defaults.color = '#A89B7A';
 Chart.defaults.font.family = "'Outfit', sans-serif";
 
+const TOOLTIP_STYLE = {
+  backgroundColor: 'rgba(5,5,8,0.95)',
+  titleColor: '#FFB800',
+  bodyColor: '#F0E6C8',
+  borderColor: 'rgba(255,184,0,0.4)',
+  borderWidth: 1,
+  padding: 12,
+  bodyFont: { size: 13, weight: 'bold' }
+};
+
+const GRID = { color: 'rgba(255,255,255,0.05)' };
+
 let decadeChart, topMoviesChart, scatterChart;
 
 const FULL_DATA = {
@@ -63,7 +75,8 @@ const FULL_DATA = {
 };
 
 function initCharts() {
-  // 1. Decade Chart (Static overall trend)
+
+  // ── 1. Decade Box Office Line Chart ──
   const ctxDecade = document.getElementById('decadeChart');
   if (ctxDecade) {
     decadeChart = new Chart(ctxDecade, {
@@ -71,41 +84,25 @@ function initCharts() {
       data: {
         labels: ['1970s', '1980s', '1990s', '2000s', '2010s', '2020s'],
         datasets: [{
-          label: 'Est. Box Office (Crores)',
+          label: 'Est. Box Office (₹ Crores)',
           data: [15, 80, 350, 800, 2500, 2000],
           borderColor: '#FFB800',
-          backgroundColor: 'rgba(255, 184, 0, 0.2)',
-          borderWidth: 3,
-          tension: 0.4,
-          fill: true,
+          backgroundColor: 'rgba(255,184,0,0.15)',
+          borderWidth: 3, tension: 0.4, fill: true,
           pointBackgroundColor: '#FFD60A',
-          pointRadius: 6,
-          pointHoverRadius: 8
+          pointRadius: 6, pointHoverRadius: 9
         }]
       },
       options: {
         responsive: true,
         animation: { duration: 2000, easing: 'easeOutQuart' },
-        plugins: {
-          legend: { display: false },
-          tooltip: {
-            backgroundColor: 'rgba(0,0,0,0.8)',
-            titleColor: '#FFB800',
-            bodyFont: { size: 14, weight: 'bold' },
-            padding: 12,
-            borderColor: 'rgba(255,184,0,0.5)',
-            borderWidth: 1
-          }
-        },
-        scales: {
-          y: { grid: { color: 'rgba(255, 255, 255, 0.05)' } },
-          x: { grid: { color: 'rgba(255, 255, 255, 0.05)' } }
-        }
+        plugins: { legend: { display: false }, tooltip: TOOLTIP_STYLE },
+        scales: { y: { grid: GRID }, x: { grid: GRID } }
       }
     });
   }
 
-  // 2. Top Movies Bar Chart
+  // ── 2. Top Grossing Bar Chart ──
   const ctxTop = document.getElementById('topMoviesChart');
   if (ctxTop) {
     topMoviesChart = new Chart(ctxTop, {
@@ -113,33 +110,113 @@ function initCharts() {
       data: {
         labels: FULL_DATA['all'].topLabels,
         datasets: [{
-          label: 'Box Office (Crores)',
+          label: 'Box Office (₹ Crores)',
           data: FULL_DATA['all'].topData,
-          backgroundColor: ['#FFD60A', '#FFB800', '#CC9200', '#FF3D3D', '#A89B7A'],
+          backgroundColor: ['#FFD60A', '#FFB800', '#CC9200', '#00E5FF', '#E50914'],
           borderRadius: 4
         }]
       },
       options: {
         responsive: true,
         animation: { duration: 1500, easing: 'easeOutBounce' },
+        plugins: { legend: { display: false }, tooltip: TOOLTIP_STYLE },
+        scales: { y: { grid: GRID }, x: { grid: { display: false } } }
+      }
+    });
+  }
+
+  // ── 3. Genre Distribution Doughnut Chart ──
+  const ctxGenre = document.getElementById('genreChart');
+  if (ctxGenre) {
+    new Chart(ctxGenre, {
+      type: 'doughnut',
+      data: {
+        labels: ['Action', 'Drama', 'Comedy', 'Sci-Fi', 'Thriller', 'Devotional', 'Musical'],
+        datasets: [{
+          data: [42, 28, 8, 5, 6, 5, 6],
+          backgroundColor: ['#FFB800','#00E5FF','#E50914','#7B2FFF','#FF6B35','#00FF88','#FF3D8A'],
+          borderColor: '#050508',
+          borderWidth: 3,
+          hoverOffset: 12
+        }]
+      },
+      options: {
+        responsive: true,
+        animation: { duration: 2000, animateRotate: true },
         plugins: {
-          legend: { display: false },
-          tooltip: {
-            backgroundColor: 'rgba(0,0,0,0.8)',
-            titleColor: '#FFB800',
-            bodyFont: { size: 14, weight: 'bold' },
-            padding: 12
-          }
+          legend: {
+            display: true,
+            position: 'bottom',
+            labels: { color: '#C0B28F', padding: 15, font: { size: 12, weight: '600' } }
+          },
+          tooltip: TOOLTIP_STYLE
         },
+        cutout: '60%'
+      }
+    });
+  }
+
+  // ── 4. Director Collaborations Horizontal Bar Chart ──
+  const ctxDir = document.getElementById('directorChart');
+  if (ctxDir) {
+    new Chart(ctxDir, {
+      type: 'bar',
+      data: {
+        labels: ['K. Balachander', 'SP. Muthuraman', 'Suresh Krissna', 'KS. Ravikumar', 'S. Shankar', 'Pa. Ranjith'],
+        datasets: [{
+          label: 'Films Together',
+          data: [6, 5, 4, 3, 3, 2],
+          backgroundColor: ['#FFD60A','#FFB800','#CC9200','#00E5FF','#7B2FFF','#FF6B35'],
+          borderRadius: 4
+        }]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        animation: { duration: 1800, easing: 'easeOutCubic' },
+        plugins: { legend: { display: false }, tooltip: TOOLTIP_STYLE },
         scales: {
-          y: { grid: { color: 'rgba(255, 255, 255, 0.05)' } },
-          x: { grid: { display: false } }
+          x: { grid: GRID, ticks: { stepSize: 1 } },
+          y: { grid: { display: false } }
         }
       }
     });
   }
 
-  // 3. Scatter Chart (Rating vs Box Office)
+  // ── 5. IMDb Trend Line Chart ──
+  const ctxImdb = document.getElementById('imdbTrendChart');
+  if (ctxImdb) {
+    new Chart(ctxImdb, {
+      type: 'line',
+      data: {
+        labels: [
+          'Apoorva Raagangal','Mullum Malarum','Billa','Thillu Mullu',
+          'Thalapathi','Baasha','Padayappa','Chandramukhi','Sivaji',
+          'Enthiran','Kabali','Petta','Jailer','Vettaiyan'
+        ],
+        datasets: [{
+          label: 'IMDb Rating',
+          data: [8.5, 9.1, 8.9, 9.3, 9.4, 9.6, 9.3, 8.7, 8.9, 9.1, 8.3, 8.9, 9.0, 8.5],
+          borderColor: '#00E5FF',
+          backgroundColor: 'rgba(0,229,255,0.1)',
+          borderWidth: 2.5, tension: 0.4, fill: true,
+          pointBackgroundColor: '#FFD60A',
+          pointRadius: 5, pointHoverRadius: 9
+        }]
+      },
+      options: {
+        responsive: true,
+        animation: { duration: 2200, easing: 'easeOutSine' },
+        plugins: { legend: { display: false }, tooltip: TOOLTIP_STYLE },
+        scales: {
+          y: { grid: GRID, min: 6, max: 10 },
+          x: { grid: GRID, ticks: { maxRotation: 45, font: { size: 10 } } }
+        }
+      }
+    });
+  }
+
+  // ── 6. IMDb Rating vs Box Office Scatter ──
   const ctxScatter = document.getElementById('scatterChart');
   if (ctxScatter) {
     scatterChart = new Chart(ctxScatter, {
@@ -149,8 +226,7 @@ function initCharts() {
           label: 'Movies',
           data: FULL_DATA['all'].scatterData,
           backgroundColor: '#00E5FF',
-          pointRadius: 8,
-          pointHoverRadius: 12,
+          pointRadius: 8, pointHoverRadius: 12,
           pointHoverBackgroundColor: '#FFD60A'
         }]
       },
@@ -160,21 +236,90 @@ function initCharts() {
         plugins: {
           legend: { display: false },
           tooltip: {
-            backgroundColor: 'rgba(0,0,0,0.9)',
-            titleColor: '#00E5FF',
-            bodyFont: { size: 14, weight: 'bold' },
-            padding: 12,
+            ...TOOLTIP_STYLE,
             callbacks: {
               label: (ctx) => {
                 const item = ctx.raw;
-                return `${item.title} — Rating: ${item.x} | BO: ₹${item.y}Cr`;
+                return `${item.title} — ⭐ ${item.x} | ₹${item.y}Cr`;
               }
             }
           }
         },
         scales: {
-          x: { title: { display: true, text: 'IMDb Rating', color: '#A89B7A' }, grid: { color: 'rgba(255,255,255,0.05)' } },
-          y: { title: { display: true, text: 'Box Office (Crores)', color: '#A89B7A' }, grid: { color: 'rgba(255,255,255,0.05)' } }
+          x: { title: { display: true, text: 'IMDb Rating', color: '#A89B7A' }, grid: GRID },
+          y: { title: { display: true, text: 'Box Office (₹ Crores)', color: '#A89B7A' }, grid: GRID }
+        }
+      }
+    });
+  }
+
+  // ── 7. Career Timeline — Films per Decade Bar ──
+  const ctxTimeline = document.getElementById('timelineChart');
+  if (ctxTimeline) {
+    new Chart(ctxTimeline, {
+      type: 'bar',
+      data: {
+        labels: ['1970s', '1980s', '1990s', '2000s', '2010s', '2020s'],
+        datasets: [{
+          label: 'Films Released',
+          data: [6, 7, 8, 3, 6, 6],
+          backgroundColor: 'rgba(255,184,0,0.3)',
+          borderColor: '#FFB800',
+          borderWidth: 2,
+          borderRadius: 4
+        }]
+      },
+      options: {
+        responsive: true,
+        animation: { duration: 1600, easing: 'easeOutQuart' },
+        plugins: { legend: { display: false }, tooltip: TOOLTIP_STYLE },
+        scales: {
+          y: { grid: GRID, ticks: { stepSize: 1 }, title: { display: true, text: 'No. of Films', color: '#A89B7A' } },
+          x: { grid: { display: false } }
+        }
+      }
+    });
+  }
+
+  // ── 8. Awards & Milestones Radar / Polar Chart ──
+  const ctxAwards = document.getElementById('awardsChart');
+  if (ctxAwards) {
+    new Chart(ctxAwards, {
+      type: 'polarArea',
+      data: {
+        labels: ['Filmfare Awards', 'Tamil Nadu State', 'National Awards', 'Vijay Awards', 'SIIMA Awards', 'Honorary'],
+        datasets: [{
+          data: [7, 9, 3, 6, 5, 4],
+          backgroundColor: [
+            'rgba(255,184,0,0.5)',
+            'rgba(0,229,255,0.5)',
+            'rgba(229,9,20,0.5)',
+            'rgba(123,47,255,0.5)',
+            'rgba(255,107,53,0.5)',
+            'rgba(0,255,136,0.5)'
+          ],
+          borderColor: [
+            '#FFB800','#00E5FF','#E50914','#7B2FFF','#FF6B35','#00FF88'
+          ],
+          borderWidth: 2
+        }]
+      },
+      options: {
+        responsive: true,
+        animation: { duration: 2000, animateRotate: true },
+        plugins: {
+          legend: {
+            display: true,
+            position: 'bottom',
+            labels: { color: '#C0B28F', padding: 12, font: { size: 11, weight: '600' } }
+          },
+          tooltip: TOOLTIP_STYLE
+        },
+        scales: {
+          r: {
+            grid: { color: 'rgba(255,255,255,0.08)' },
+            ticks: { display: false }
+          }
         }
       }
     });
@@ -199,15 +344,13 @@ function updateCharts(decade) {
 
 document.addEventListener('DOMContentLoaded', () => {
   initCharts();
-  
-  // Filter Logic
+
   const buttons = document.querySelectorAll('.control-btn');
   buttons.forEach(btn => {
     btn.addEventListener('click', (e) => {
       buttons.forEach(b => b.classList.remove('active'));
       e.target.classList.add('active');
-      const decade = e.target.dataset.decade;
-      updateCharts(decade);
+      updateCharts(e.target.dataset.decade);
     });
   });
 });
